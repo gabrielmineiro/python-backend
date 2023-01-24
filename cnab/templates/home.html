@@ -3,16 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="icon"
+      href="https://cdn.icon-icons.com/icons2/1744/PNG/512/3643772-archive-archives-document-folder-open_113445.png"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {% load static %}
-    <link href="{{STATIC_URL}}../styles/home.css" rel="stylesheet" />
-    <title>Document</title>
+    <title>Início</title>
   </head>
-  <body>
-    <form action="{% url  'save' %}" method="post">
-      {% csrf_token %} {{form}}
+  <body
+    style="
+      display: flex;
+      align-content: center;
+      justify-content: center;
 
-      <input type="submit" />
+      background-color: #0e9094;
+    "
+  >
+    <form
+      action="{% url  'save' %}"
+      method="post"
+      style="
+        height: 20rem;
+        width: 20rem;
+        background-color: #f39708;
+        margin-top: 10%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 1rem;
+        border-radius: 0.4rem;
+        font-weight: bold;
+        font-size: 30px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: #382924;
+      "
+    >
+      {% csrf_token %} {{form.as_table}}
+      <p style="font-size: 15px">apenas arquivos .txt</p>
+
+      <input
+        type="submit"
+        style="
+          width: 8rem;
+          height: 2rem;
+          border: none;
+          border-radius: 0.4rem;
+          background-color: #0e9094;
+          color: white;
+        "
+      />
     </form>
   </body>
 </html>

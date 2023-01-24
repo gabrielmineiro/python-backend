@@ -10,8 +10,6 @@ def home(request):
     return render(request, "home.html", {"form": form})
 
 
-class SaveDb(APIView):
-    def post(self, request):
 
 
 
@@ -19,26 +17,23 @@ def saveDb(request):
 
     to_save = open(request.POST['arquivo'], "r")
    
-    for _ in to_save:
-        data=to_save.readline()
-        type= data[0]
-        date= data[1:9]
-        value= data[9:19]
-        cpf= data[19:30]
-        card=data[30:42]
-        hour= data[42:48]
-        owner= data[48:62]
-        establishment= data[62:81]
+    every=to_save.readlines()
+    for each in every:
+        type= each[0]
+        date= each[1:9]
+        value= each[9:19]
+        cpf= each[19:30]
+        card=each[30:42]
+        hour= each[42:48]
+        owner= each[48:62]
+        establishment= each[62:81]
+        to_cnab={"type":type,"date":date,"value":value,"cpf":cpf,"card":card,"hour":hour,"owner":owner,"establishment":establishment}
 
-        CnabSerializer(type=type,date=date,value=value,
-        cpf=cpf,card=card,hour=hour, owner=owner, establishment=establishment)
+        serializer=CnabSerializer(data=to_cnab)
 
-        CnabSerializer.is_valid(raise_exception=True)
-        CnabSerializer.save()
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
 
 
-    return HttpResponse(to_save.readline())
-    serializer= CnabSerializer()
-     
+    return render(request, "success.html")
 
-    return HttpResponse(to_save.readline())
