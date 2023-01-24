@@ -19,16 +19,27 @@
       background-color: #0e9094;
     "
   >
-    <h1
+    <div
       style="
-        margin-top: 15%;
+        margin-top: 10%;
         background-color: #f39708;
         padding: 5rem;
         border-radius: 0.4rem;
         color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       "
     >
-      ARQUIVO SALVO
-    </h1>
+      <h1>ARQUIVO SALVO</h1>
+      <ul style="list-style: none; font-size: 20px">
+        {% for each in to_return %}
+        <li>
+          {{each.establishment}}:
+          <b style="color: #f21d41"> R$ {{each.balance}}</b>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
   </body>
 </html>
