@@ -2,8 +2,8 @@ from django.db import models
 
 from django import forms
 
-class FormCnab(forms.Form):
-    arquivo= forms.FileField()
+class FormCnab(models.Model):
+    arquivo= models.FileField(upload_to="documents/")
 
 
 class CnabModel(models.Model):

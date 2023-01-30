@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from .models import FormCnab
-from django.http import HttpResponse
 from .serializers import CnabSerializer
-from rest_framework.views import APIView, Response, status
+
+from django.core.files.storage import FileSystemStorage
+
 import unidecode
 import re
-import ipdb
+
+
 
 def home(request):
     form = FormCnab()
@@ -16,8 +18,10 @@ def home(request):
 
 
 def saveDb(request):
-
-    to_save = open(request.POST['arquivo'], "r")
+    fs= FileSystemStorage()
+    doc= fs.save("cnab.txt", request.FILES["arquivo"])
+    to_save = open(f"media/{doc}","r")
+    
    
     every=to_save.readlines()
     to_return= []
@@ -34,7 +38,6 @@ def saveDb(request):
         establishment =re.sub(u'[^a-zA-Z0-9áéíóúÁÉÍÓÚâêîôÂÊÎÔãõÃÕçÇ: ]', '', establishment1)
 
         value= value1.lstrip('0')
-        #value = '{0:,}'.format(value_without0).replace(',','.')
 
         to_cnab={"type":type,"date":date,"value":value,"cpf":cpf,"card":card,"hour":hour,"owner":owner,"establishment":establishment}
        

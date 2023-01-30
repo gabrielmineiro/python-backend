@@ -133,3 +133,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Desafio python back-end',
+    'DESCRIPTION': 'API desenvolvida para interpretar dados de um arquivo .txt e armazená-los em um banco de dados Postgres',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
